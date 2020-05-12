@@ -16,23 +16,23 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        var items: MutableList<Item> = ArrayList()
+        val items: MutableList<Item> = ArrayList()
 
-        var ironMan = IronMan(
+        val ironMan = IronMan(
             R.drawable.ironman,
             "Iron Man",
             "Iron Man is a 2008 American superhero film based on the Marvel Comics character of the same name."
         )
         items.add(Item(0, ironMan))
 
-        var thor = Thor(
+        val thor = Thor(
             R.drawable.thor,
             "Thor",
             "Thor is a prominently mentioned god throughout the recorded history of the Germanic peoples, from the Roman occupation of regions of Germania"
         )
         items.add(Item(1, thor))
 
-        var captain = Captain(
+        val captain = Captain(
             R.drawable.captain,
             "American Captain",
             "Captain America is a fictional superhero appearing in American comic books published by Marvel Comics."
@@ -46,7 +46,6 @@ class MainActivity : AppCompatActivity() {
         items.add(Item(0, ironMan))
         items.add(Item(1, thor))
         items.add(Item(2, captain))
-
 
         recyclerView.adapter = HeroesAdapter(items)
     }

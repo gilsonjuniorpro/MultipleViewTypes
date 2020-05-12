@@ -11,22 +11,17 @@ import com.multipleviewtypes.ca.models.Captain
 import com.multipleviewtypes.ca.models.IronMan
 import com.multipleviewtypes.ca.models.Item
 import com.multipleviewtypes.ca.models.Thor
-import org.jetbrains.annotations.NotNull
 
 class HeroesAdapter(list: MutableList<Item>) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     private var items: List<Item> = list
 
     class IronManViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private lateinit var ivPicture: ImageView
-        private lateinit var tvName: TextView
-        private lateinit var tvDescription: TextView
+        private var ivPicture: ImageView = itemView.findViewById(R.id.ivIronMan)
+        private var tvName: TextView = itemView.findViewById(R.id.tvNameIronMan)
+        private var tvDescription: TextView = itemView.findViewById(R.id.tvDescriptionIronMan)
 
         fun setIronMan(ironMan: IronMan){
-            ivPicture = itemView.findViewById(R.id.ivIronMan)
-            tvName = itemView.findViewById(R.id.tvNameIronMan)
-            tvDescription = itemView.findViewById(R.id.tvDescriptionIronMan)
-
             ivPicture.setImageResource(ironMan.picture!!)
             tvName.text = ironMan.name
             tvDescription.text = ironMan.description
@@ -34,15 +29,11 @@ class HeroesAdapter(list: MutableList<Item>) : RecyclerView.Adapter<RecyclerView
     }
 
     class ThorViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private lateinit var ivPicture: ImageView
-        private lateinit var tvName: TextView
-        private lateinit var tvDescription: TextView
+        private var ivPicture: ImageView = itemView.findViewById(R.id.ivThor)
+        private var tvName: TextView = itemView.findViewById(R.id.tvNameThor)
+        private var tvDescription: TextView = itemView.findViewById(R.id.tvDescriptionThor)
 
         fun setThor(thor: Thor){
-            ivPicture = itemView.findViewById(R.id.ivThor)
-            tvName = itemView.findViewById(R.id.tvNameThor)
-            tvDescription = itemView.findViewById(R.id.tvDescriptionThor)
-
             ivPicture.setImageResource(thor.picture!!)
             tvName.text = thor.name
             tvDescription.text = thor.description
@@ -50,15 +41,11 @@ class HeroesAdapter(list: MutableList<Item>) : RecyclerView.Adapter<RecyclerView
     }
 
     class CaptainViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private lateinit var ivPicture: ImageView
-        private lateinit var tvName: TextView
-        private lateinit var tvDescription: TextView
+        private var ivPicture: ImageView = itemView.findViewById(R.id.ivCaptain)
+        private var tvName: TextView = itemView.findViewById(R.id.tvNameCaptain)
+        private var tvDescription: TextView = itemView.findViewById(R.id.tvDescriptionCaptain)
 
         fun setCaptain(captain: Captain){
-            ivPicture = itemView.findViewById(R.id.ivCaptain)
-            tvName = itemView.findViewById(R.id.tvNameCaptain)
-            tvDescription = itemView.findViewById(R.id.tvDescriptionCaptain)
-
             ivPicture.setImageResource(captain.picture!!)
             tvName.text = captain.name
             tvDescription.text = captain.description
@@ -102,15 +89,15 @@ class HeroesAdapter(list: MutableList<Item>) : RecyclerView.Adapter<RecyclerView
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when {
             getItemViewType(position) == 0 -> {
-                var ironMan = items[position].obj as IronMan
+                val ironMan = items[position].obj as IronMan
                 (holder as IronManViewHolder).setIronMan(ironMan)
             }
             getItemViewType(position) == 1 -> {
-                var thor = items[position].obj as Thor
+                val thor = items[position].obj as Thor
                 (holder as ThorViewHolder).setThor(thor)
             }
             else -> {
-                var captain = items[position].obj as Captain
+                val captain = items[position].obj as Captain
                 (holder as CaptainViewHolder).setCaptain(captain)
             }
         }
