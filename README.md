@@ -1,7 +1,7 @@
 # MultipleViewTypes
 
 ### **Overview - About this project**
-Simples project using **viewTypes** to handle different types of Views
+Simple project using **viewTypes** to handle different types of Views
 
 
 ### 📷 How is this App
