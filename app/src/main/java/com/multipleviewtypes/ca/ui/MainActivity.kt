@@ -4,13 +4,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.multipleviewtypes.ca.R
 import com.multipleviewtypes.ca.adapters.HeroesAdapter
-import com.multipleviewtypes.ca.models.Captain
-import com.multipleviewtypes.ca.models.IronMan
-import com.multipleviewtypes.ca.models.Item
-import com.multipleviewtypes.ca.models.Thor
+import com.multipleviewtypes.ca.models.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+        const val IRON_MAN = 0
+        const val CAPTAIN_AMERICA = 1
+        const val THOR = 2
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,34 +21,34 @@ class MainActivity : AppCompatActivity() {
 
         val items: MutableList<Item> = ArrayList()
 
-        val ironMan = IronMan(
+        val ironMan = Hero(
             R.drawable.ironman,
             "Iron Man",
             "Iron Man is a 2008 American superhero film based on the Marvel Comics character of the same name."
         )
-        items.add(Item(0, ironMan))
+        items.add(Item(IRON_MAN, ironMan))
 
-        val thor = Thor(
+        val thor = Hero(
             R.drawable.thor,
             "Thor",
             "Thor is a prominently mentioned god throughout the recorded history of the Germanic peoples, from the Roman occupation of regions of Germania"
         )
-        items.add(Item(1, thor))
+        items.add(Item(THOR, thor))
 
-        val captain = Captain(
+        val captain = Hero(
             R.drawable.captain,
             "American Captain",
             "Captain America is a fictional superhero appearing in American comic books published by Marvel Comics."
         )
-        items.add(Item(2, captain))
+        items.add(Item(CAPTAIN_AMERICA, captain))
 
-        items.add(Item(0, ironMan))
-        items.add(Item(1, thor))
-        items.add(Item(2, captain))
+        items.add(Item(IRON_MAN, ironMan))
+        items.add(Item(THOR, thor))
+        items.add(Item(CAPTAIN_AMERICA, captain))
 
-        items.add(Item(0, ironMan))
-        items.add(Item(1, thor))
-        items.add(Item(2, captain))
+        items.add(Item(IRON_MAN, ironMan))
+        items.add(Item(THOR, thor))
+        items.add(Item(CAPTAIN_AMERICA, captain))
 
         recyclerView.adapter = HeroesAdapter(items)
     }
