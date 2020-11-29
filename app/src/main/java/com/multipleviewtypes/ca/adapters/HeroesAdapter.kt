@@ -7,10 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.multipleviewtypes.ca.R
-import com.multipleviewtypes.ca.models.Captain
-import com.multipleviewtypes.ca.models.IronMan
-import com.multipleviewtypes.ca.models.Item
-import com.multipleviewtypes.ca.models.Thor
+import com.multipleviewtypes.ca.models.*
+import com.multipleviewtypes.ca.ui.MainActivity
 
 class HeroesAdapter(list: MutableList<Item>) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
@@ -21,7 +19,7 @@ class HeroesAdapter(list: MutableList<Item>) : RecyclerView.Adapter<RecyclerView
         private var tvName: TextView = itemView.findViewById(R.id.tvNameIronMan)
         private var tvDescription: TextView = itemView.findViewById(R.id.tvDescriptionIronMan)
 
-        fun setIronMan(ironMan: IronMan){
+        fun setIronMan(ironMan: Hero){
             ivPicture.setImageResource(ironMan.picture!!)
             tvName.text = ironMan.name
             tvDescription.text = ironMan.description
@@ -33,7 +31,7 @@ class HeroesAdapter(list: MutableList<Item>) : RecyclerView.Adapter<RecyclerView
         private var tvName: TextView = itemView.findViewById(R.id.tvNameThor)
         private var tvDescription: TextView = itemView.findViewById(R.id.tvDescriptionThor)
 
-        fun setThor(thor: Thor){
+        fun setThor(thor: Hero){
             ivPicture.setImageResource(thor.picture!!)
             tvName.text = thor.name
             tvDescription.text = thor.description
@@ -45,7 +43,7 @@ class HeroesAdapter(list: MutableList<Item>) : RecyclerView.Adapter<RecyclerView
         private var tvName: TextView = itemView.findViewById(R.id.tvNameCaptain)
         private var tvDescription: TextView = itemView.findViewById(R.id.tvDescriptionCaptain)
 
-        fun setCaptain(captain: Captain){
+        fun setCaptain(captain: Hero){
             ivPicture.setImageResource(captain.picture!!)
             tvName.text = captain.name
             tvDescription.text = captain.description
@@ -54,14 +52,14 @@ class HeroesAdapter(list: MutableList<Item>) : RecyclerView.Adapter<RecyclerView
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         when (viewType) {
-            0 -> {
+            MainActivity.IRON_MAN -> {
                 return IronManViewHolder(LayoutInflater.from(parent.context).inflate(
                     R.layout.item_ironman,
                     parent,
                     false)
                 )
             }
-            1 -> {
+            MainActivity.THOR -> {
                 return ThorViewHolder(LayoutInflater.from(parent.context).inflate(
                     R.layout.item_thor,
                     parent,
@@ -83,22 +81,22 @@ class HeroesAdapter(list: MutableList<Item>) : RecyclerView.Adapter<RecyclerView
     }
 
     override fun getItemViewType(position: Int): Int {
-        return items[position].type!!
+        return items[position].type
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+
+        val hero = items[position].obj
+
         when {
-            getItemViewType(position) == 0 -> {
-                val ironMan = items[position].obj as IronMan
-                (holder as IronManViewHolder).setIronMan(ironMan)
+            getItemViewType(position) == MainActivity.IRON_MAN -> {
+                (holder as IronManViewHolder).setIronMan(hero)
             }
-            getItemViewType(position) == 1 -> {
-                val thor = items[position].obj as Thor
-                (holder as ThorViewHolder).setThor(thor)
+            getItemViewType(position) == MainActivity.THOR -> {
+                (holder as ThorViewHolder).setThor(hero)
             }
             else -> {
-                val captain = items[position].obj as Captain
-                (holder as CaptainViewHolder).setCaptain(captain)
+                (holder as CaptainViewHolder).setCaptain(hero)
             }
         }
     }
